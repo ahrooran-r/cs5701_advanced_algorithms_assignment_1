@@ -1,0 +1,98 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>lk.uom.advanced_algorithms</groupId>
+    <artifactId>assignment_1</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>assignment_1</name>
+    <packaging>jar</packaging>
+
+    <!-- @formatter:off -->
+    <description>Answers for assignment 1, question 6</description>
+    <!-- @formatter:on -->
+
+    <developers>
+        <developer>
+            <name>ahrooran</name>
+            <id>ahrooran-r</id>
+            <url>https://www.linkedin.com/in/ahrooran</url>
+            <email>ahrooran17@gmail.com</email>
+            <roles>
+                <role>Java Developer</role>
+            </roles>
+            <timezone>+5:30</timezone>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.output>dist</project.output>
+
+        <jdk.version>21</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.30</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>${jdk.version}</release>
+                    <compilerArgs>--enable-preview</compilerArgs>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>21</version>
+                                    <message>Project requires JDK 21</message>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.10.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
