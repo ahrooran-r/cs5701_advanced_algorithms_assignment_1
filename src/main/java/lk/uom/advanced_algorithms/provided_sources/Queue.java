@@ -25,9 +25,9 @@ import java.util.NoSuchElementException;
  *  the items in FIFO order.
  *  <p>
  *  This implementation uses a singly linked list with a static nested class for
- *  linked-list nodes. See {@link LinkedQueue} for the version from the
+ *  linked-list nodes. See for the version from the
  *  textbook that uses a non-static nested class.
- *  See {@link ResizingArrayQueue} for a version that uses a resizing array.
+ *  See for a version that uses a resizing array.
  *  The <em>enqueue</em>, <em>dequeue</em>, <em>peek</em>, <em>size</em>, and <em>is-empty</em>
  *  operations all take constant time in the worst case.
  *  <p>
@@ -168,15 +168,15 @@ public class Queue<Item> implements Iterable<Item> {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        Queue<String> queue = new Queue<String>();
-        while (!StdIn.isEmpty()) {
-            String item = StdIn.readString();
-            if (!item.equals("-"))
-                queue.enqueue(item);
-            else if (!queue.isEmpty())
-                StdOut.print(queue.dequeue() + " ");
-        }
-        StdOut.println("(" + queue.size() + " left on queue)");
+        // Queue<String> queue = new Queue<String>();
+        // while (!StdIn.isEmpty()) {
+        //     String item = StdIn.readString();
+        //     if (!item.equals("-"))
+        //         queue.enqueue(item);
+        //     else if (!queue.isEmpty())
+        //         StdOut.print(queue.dequeue() + " ");
+        // }
+        // StdOut.println("(" + queue.size() + " left on queue)");
     }
 }
 

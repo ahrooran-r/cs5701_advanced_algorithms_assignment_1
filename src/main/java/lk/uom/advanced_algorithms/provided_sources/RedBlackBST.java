@@ -25,9 +25,13 @@ package lk.uom.advanced_algorithms.provided_sources; /**************************
  *
  ******************************************************************************/
 
-import java.util.ArrayList;
+import lk.uom.advanced_algorithms.Util;
+import lombok.SneakyThrows;
+
+import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Random;
 
 /**
  * The {@code BST} class represents an ordered symbol table of generic
@@ -721,9 +725,118 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
      *
      * @param args the command-line arguments
      */
+    @SneakyThrows
     public static void main(String[] args) {
-        RedBlackBST<Long, Integer> st = new RedBlackBST<>();
 
-//        TODO: Write the code here
+        // INSERT ----------------------------------------------------
+
+        // // for visual graphs
+        // System.out.println("RedBlack BST init ...");
+        // Thread.sleep(15 * 1_000);
+        // System.out.println("RedBlack BST ready ...");
+        //
+        // Path insert = Path.of("data", "insert");
+        //
+        // for (int _set = 1; _set <= 2; _set++) {
+        //     for (int _data = 1; _data <= 3; _data++) {
+        //         String set = "set" + _set;
+        //         String data = "data_" + _data + ".txt";
+        //         Path actual = insert.resolve(set).resolve(data);
+        //
+        //         List<Long> numbers = Util.loadData(actual);
+        //         RedBlackBST<Long, Long> st = new RedBlackBST<>();
+        //
+        //         long timeTaken = insert(numbers, st);
+        //         System.out.printf("Time taken to 'insert' %d numbers (%s : %s) into a 'RedBlack BST' took = %d micro seconds\n",
+        //                 numbers.size(), set, data, timeTaken);
+        //     }
+        // }
+
+        // END INSERT ----------------------------------------------------
+
+
+        // SEARCH --------------------------------------------------------
+
+        // // for visual graphs
+        // System.out.println("RB BST init ...");
+        // Thread.sleep(15 * 1_000);
+        // System.out.println("RB BST ready ...");
+        //
+        // Path _insert = Path.of("data", "insert");
+        // Path _search = Path.of("data", "search");
+        //
+        // for (int _set = 1; _set <= 2; _set++) {
+        //     for (int _data = 1; _data <= 3; _data++) {
+        //         String set = "set" + _set;
+        //         String data = "data_" + _data + ".txt";
+        //         Path insert = _insert.resolve(set).resolve(data);
+        //         Path search = _search.resolve(set).resolve(data);
+        //
+        //         List<Long> insertNumbers = Util.loadData(insert);
+        //         List<Long> searchNumbers = Util.loadData(search);
+        //         RedBlackBST<Long, Long> st = new RedBlackBST<>();
+        //         insert(insertNumbers, st);
+        //         long timeTaken = search(searchNumbers, st);
+        //         System.out.printf("Time taken to 'search' (%d / %d) numbers (%s : %s) into a 'RB BST' took = %d micro seconds\n",
+        //                 searchNumbers.size(), insertNumbers.size(), set, data, timeTaken);
+        //     }
+        // }
+
+        // DELETE ------------------------------------------------------------
+
+        // for visual graphs
+        System.out.println("RB BST init ...");
+        Thread.sleep(15 * 1_000);
+        System.out.println("RB BST ready ...");
+
+        Path _insert = Path.of("data", "insert");
+        Path _delete = Path.of("data", "delete");
+
+        for (int _set = 1; _set <= 2; _set++) {
+            for (int _data = 1; _data <= 3; _data++) {
+                String set = "set" + _set;
+                String data = "data_" + _data + ".txt";
+                Path insert = _insert.resolve(set).resolve(data);
+                Path delete = _delete.resolve(set).resolve(data);
+
+                List<Long> insertNumbers = Util.loadData(insert);
+                List<Long> deleteNumbers = Util.loadData(delete);
+                RedBlackBST<Long, Long> st = new RedBlackBST<>();
+                insert(insertNumbers, st);
+                long timeTaken = delete(deleteNumbers, st);
+                System.out.printf("Time taken to 'delete' (%d / %d) numbers (%s : %s) into a 'RedBlack BST' took = %d micro seconds\n",
+                        deleteNumbers.size(), insertNumbers.size(), set, data, timeTaken);
+            }
+        }
+
+        // END DELETE --------------------------------------------------------
     }
+
+    private static long insert(List<Long> numbers, RedBlackBST<Long, Long> corpus) {
+        var start = LocalDateTime.now();
+        for (Long number : numbers) {
+            corpus.put(number, number);
+        }
+        var end = LocalDateTime.now();
+        return Util.duration(start, end);
+    }
+
+    private static long search(List<Long> numbers, RedBlackBST<Long, Long> corpus) {
+        var start = LocalDateTime.now();
+        for (Long number : numbers) {
+            corpus.get(number);
+        }
+        var end = LocalDateTime.now();
+        return Util.duration(start, end);
+    }
+
+    private static long delete(List<Long> numbers, RedBlackBST<Long, Long> corpus) {
+        var start = LocalDateTime.now();
+        for (Long number : numbers) {
+            corpus.delete(number);
+        }
+        var end = LocalDateTime.now();
+        return Util.duration(start, end);
+    }
+
 }
